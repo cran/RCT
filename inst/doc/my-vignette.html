@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Isidoro Garcia Urquieta" />
+
+
+<title>Randomized Control Trials Design, Assignment and Evaluation</title>
+
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Randomized Control Trials Design, Assignment and Evaluation</h1>
+<h4 class="author">Isidoro Garcia Urquieta</h4>
+
+
+
+<div id="how-to-use-rct" class="section level1">
+<h1>How to use RCT</h1>
+<div id="randomized-control-trials-theory" class="section level2">
+<h2>Randomized Control Trials Theory</h2>
+<p>A randomized control trial consists of experiment in which the treatment status es randomly assigned. Let’s introduce some notation:</p>
+<p><strong>Treatment indicator variable</strong> <span class="math inline">\(W = 1\)</span> if the unit received the active treatment <span class="math inline">\(W = 0\)</span> if the unit received the control treatment</p>
+<p><strong>Outcomes under treatment</strong></p>
+<p><span class="math inline">\(Y_i(1)\)</span> = outcome for unit i if received the active treatment <span class="math inline">\(Y_i(0)\)</span> = outcome for unit i if received the control treatment</p>
+<p><strong>Causal effect of treatment on unit i</strong></p>
+<p><span class="math inline">\(Y_i(1) – Y_i(0)\)</span></p>
+<p>This introduces the fundamental problem of causal inference. We only observe each unit either in the treatment or control group.</p>
+<p>This is:</p>
+<p><span class="math inline">\(Y_i = W*Y_i(1) + (1-W)Y_i(0)\)</span></p>
+<p>As a result, we have an option for evaluating the <em>Average</em> Treatment Effect.</p>
+<p><span class="math inline">\(E[Y_i(1)-Y_i(0)] = ATE\)</span></p>
+<p>This could lead to think of evaluating impact as:</p>
+<p>$E[Y_i(1) | W=1] - E[Y_i(0) | W=0] $</p>
+<div id="selection-bias-and-random-assignment" class="section level3">
+<h3>Selection Bias and Random Assignment</h3>
+<p>However, this rises the problem of selection bias. People that were treated are not the equal in observables nor unobsersables to the ones treated. This sets the need for <em>Randomized Control Trials</em>. In a RCT, treatment is randomly assigned. This guarantees that:</p>
+<p><span class="math inline">\(E[Y_i(1) | W=1] = E[Y_i(1) | W=0] = E[Y_i(1)]\)</span> <span class="math inline">\(E[Y_i(0) | W=1] = E[Y_i(0) | W=0] = E[Y_i(0)]\)</span></p>
+<p>This enables an unbiased estimator of <em>ATE</em>:</p>
+<p><span class="math inline">\(E[Y_i(1)-Y_i(0)] = E[Y_i(1)] - E[Y_i(0)] = ATE\)</span></p>
+</div>
+<div id="balance-tests" class="section level3">
+<h3>Balance tests</h3>
+<p>This is posibble because random assignment assures observable baseline characteristics of treatment groups should be similar, statistical unsignificant. This is <em>balance</em> of covariates:</p>
+<p><span class="math inline">\(E[X(1)] = E[X(0)]\)</span></p>
+<p>Where <span class="math inline">\(X_{n,k}\)</span></p>
+<p>Aditionally, if <span class="math inline">\(k\)</span> is sufficiently big. One can end-up in a multiple hypothesis problem, where approximately x% (level of significance) is significant by chance.</p>
+<p>Hence, we can test balance by running the following regression:</p>
+<p>Let</p>
+<p><span class="math display">\[treat_i = {0,1,2,3, ..., n}\]</span></p>
+<p>For <span class="math inline">\(i = 1\)</span> to <span class="math inline">\(i=n\)</span></p>
+<p><span class="math display">\[eachtreat = treat = i&gt;0 \ | \ treat = 0\]</span></p>
+<p><span class="math display">\[Pr(eachtreat) = X&#39;\beta +\epsilon\]</span></p>
+<p>Then, we can check the balance in covariates by running the F-test of these model against the NULL model $Pr(eachtreat) = +$. If this test is not significant, we can assure that all the covariates <span class="math inline">\(X&#39;\)</span> are no good to predict the treatment status. Hence, covariates are balanced between treatment groups.</p>
+</div>
+<div id="testing-for-impact" class="section level3">
+<h3>Testing for impact</h3>
+<p><span class="math display">\[Y_i = \alpha + \tau treatment + \epsilon \]</span></p>
+<p>To test if the treatment effect (<span class="math inline">\(\tau\)</span>) is significant, we compute its T-statistic:</p>
+<p><span class="math display">\[T = \frac{\bar Y_1 - \bar Y_o}{\sqrt{ \sigma^2(\frac{1}{N_T}+\frac{1}{N_c})}}   \]</span></p>
+</div>
+</div>
+<div id="functions-in-library-to-design-a-rct" class="section level2">
+<h2>Functions in library to design a RCT</h2>
+<p>Let the steps of the design be a RCT:</p>
+<div id="get-data-in-which-you-want-to-randomly-assign-treatment" class="section level3">
+<h3>1. Get data in which you want to randomly assign treatment</h3>
+<p>This library has a function called <strong>summary_statistics</strong> to know the distribution of all covariates in data.</p>
+</div>
+<div id="decide-the-share-of-observations-that-will-go-to-treatment" class="section level3">
+<h3>2. Decide the share of observations that will go to treatment</h3>
+<p>Suppose we have N observations in data. We want to know how many observations we need to assign to control that will enable a detection of impact of treatment statistically. This process is based upon (Athey and Imbens (2016)).</p>
+<p>Lets start with the statistics to assess if the impact is significant:</p>
+<p><span class="math display">\[T = \frac{\bar Y_1 - \bar Y_0 - \tau}{\sqrt{ \sigma^2(\frac{1}{N_T}+\frac{1}{N_c})} } \sim N(0,1)  \]</span></p>
+<p>This means the T-statistic is distributed:</p>
+<p><span class="math display">\[T = \mathcal{N}(\frac{\tau}{\sqrt{ \sigma^2(\frac{1}{N_T}+\frac{1}{N_c})}}, 1) \]</span></p>
+<p>Now, the probability the null will be reject at the <span class="math inline">\(\alpha\)</span> level is:</p>
+<p><span class="math display">\[Pr(|T| &gt; \Phi^{-1}(1-\frac{\alpha}{2})) = \Phi (-\Phi^{-1}(1-\frac{\alpha}{2}) + \frac{\tau}{\sqrt{ \sigma^2(\frac{1}{N_T}+\frac{1}{N_c})}}) \]</span></p>
+<p>We want the probability of rejecting the null hypothesis when it is false to be equal to <span class="math inline">\(\beta\)</span>, the power.</p>
+<p><span class="math display">\[\beta = \Phi (-\Phi^{-1}(1-\frac{\alpha}{2}) + \frac{\tau}{\sqrt{ \sigma^2(\frac{1}{N_T}+\frac{1}{N_c})}}) \]</span> So, applying <span class="math inline">\(\Phi^{-1}\)</span> to both sides:</p>
+<p><span class="math display">\[\Phi^{-1}(\beta) = -\Phi^{-1}(1-\frac{\alpha}{2}) + \frac{\tau}{\sqrt{ \sigma^2(\frac{1}{N_T}+\frac{1}{N_c})}} \]</span></p>
+<p>Now, multiplying by <span class="math inline">\(\frac{\sqrt N}{\sqrt N}\)</span></p>
+<p>Finally, <span class="math inline">\(share control = \frac{N_c}{N}\)</span> and <span class="math inline">\(1-sharecontrol = \frac{N_T}{N}\)</span>:</p>
+<p><span class="math display">\[\Phi^{-1}(\beta) = -\Phi^{-1}(1-\frac{\alpha}{2}) + \frac{\tau \sqrt N}{\sqrt{ \sigma^2(\frac{1}{1-sharecontrol}+\frac{1}{sharecontrol})}} \]</span></p>
+<p><span class="math display">\[\Phi^{-1}(\beta) = -\Phi^{-1}(1-\frac{\alpha}{2}) + \frac{\tau \sqrt{ N sharecontrol(1-sharecontrol)}}{ \sigma} \]</span></p>
+<p><span class="math display">\[\tau = \frac {[\Phi^{-1}(\beta) + \Phi^{-1}(1-\frac{\alpha}{2})]\sigma}{\sqrt{ N sharecontrol(1-sharecontrol)}}\]</span> Where <span class="math inline">\(\tau\)</span> is the minimum detectable effect. Note that, given N, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\alpha\)</span>, the minimum detectable effect is lowest when share control = 0.5.</p>
+<p>Finally, note that this formula applies when comparing each treatment to control. It only has to adjust N = N control + N treati. The function <strong>tau_min</strong> calculates <span class="math inline">\(\tau\)</span> globally (i.e. all treatment vs control) and for each treatment.</p>
+</div>
+<div id="decide-which-variables-to-use-for-strata-building" class="section level3">
+<h3>3. Decide which variables to use for strata building</h3>
+<p>Prior to random assignment, one has to decide which <strong>categorical</strong> variables to build blocks. Hence, the blocks or strata are the group that combine every categorical variable. The cardinality of this groups are all the possible combinations of the chose categorial variables.</p>
+<p>To build categorical variables in a powerful way, function <strong>n_tile_label</strong> divides variables in the decided n groups, putting label of the range of each category to the variable.</p>
+</div>
+<div id="random-assignment" class="section level3">
+<h3>4. Random Assignment</h3>
+<p>Once we have the blocking variables, we need to assign treatment status <strong>within</strong> each strata. Function treatment_assign performs such random assignment for any given number of treatment groups. Furthermore, it handles misfits.</p>
+<p>Misfits are defined as observations within each strata that are not really randomly assigned because when dividing the size of each strata N_strata to each treatment share, there are some remainder observations.</p>
+<p>For instance, let the following example:</p>
+<p>N_strata = 10 share_control = <span class="math inline">\(\frac{1}{3}\)</span> share_treat_1 = <span class="math inline">\(\frac{1}{3}\)</span> share_treat_2 = <span class="math inline">\(\frac{1}{3}\)</span></p>
+<p>First 3 units are assigned to control, second 3 units are assigned to treat 1 and the last 3 unit are assigned to treat 2. As you already notice, the last observation is the remainder. This is a misfit. Misfits alter the successful random assignment because they are not. In the example, this observation is assigned to treat 2 non-randomly.</p>
+<p>The function <strong>treatment_assign</strong> handles misfits in three ways.</p>
+<ul>
+<li><p>“NA” assigns the misfits to NAs, leaving the experiment with only the pure assigned observations.</p></li>
+<li><p>“global” puts together the misfits of each strata into a single group and then assigns them randomly</p></li>
+<li><p>“strata” assigns misfits to treatment within each strata</p></li>
+</ul>
+</div>
+<div id="impact-evaluation" class="section level3">
+<h3>5 Impact evaluation</h3>
+<p>After running a RCT, the social scientist wants to know the ATE for one or several variables and the distribution of this impact within the blocking variables to check for Heterogenous Treatment Effects. Aditionally, if the experiment lasted for more than one period and panel-data is available, one must cluster the standard errors by each i unit and control for period fixed effects. Finally, if by chance one o more covariates are not balance, one would like to control for them.</p>
+<p>Function <strong>impact_eval</strong> does all this jobs in one single command. It runs all the ATE regressions for each endogenous variable, all the combinations of endogenous variables*heterogenous variables.</p>
+<p>For each combination the model run is:</p>
+<p><span class="math display">\[Y_i = \alpha + \tau treatment + \epsilon \]</span></p>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
