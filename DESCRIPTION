@@ -1,7 +1,7 @@
 Package: RCT
 Title: Assign Treatments, Power Calculations, Balances, Impact
         Evaluation of Experiments
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: person("Isidoro", "Garcia-Urquieta", email = "isidoro.gu@gmail.com", 
   role =c("aut", "cre"))
 Description: Assists in the whole process of designing and evaluating Randomized Control Trials.
@@ -16,6 +16,7 @@ Description: Assists in the whole process of designing and evaluating Randomized
     summary_statistics: Function that creates a summary statistics table with statistics 
     rank observations in n groups: Creates a factor variable with n groups. Each group has 
     a min and max label attach to each category.
+    Athey, Susan, and Guido W. Imbens (2017) <arXiv:1607.00698>.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -25,8 +26,8 @@ Suggests: knitr, rmarkdown, testthat, qpdf
 RoxygenNote: 7.0.2
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-04-03 05:46:37 UTC; Isidoro
+Packaged: 2020-04-03 19:44:37 UTC; Isidoro
 Author: Isidoro Garcia-Urquieta [aut, cre]
 Maintainer: Isidoro Garcia-Urquieta <isidoro.gu@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-04-03 17:50:05 UTC
+Date/Publication: 2020-04-04 00:30:11 UTC
