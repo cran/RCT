@@ -1,7 +1,7 @@
 Package: RCT
 Title: Assign Treatments, Power Calculations, Balances, Impact
         Evaluation of Experiments
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: person("Isidoro", "Garcia-Urquieta", email = "isidoro.gu@gmail.com", 
   role =c("aut", "cre"))
 Description: Assists in the whole process of designing and evaluating Randomized Control Trials.
@@ -21,13 +21,13 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Imports: dplyr, purrr, glue, rlang, tidyr, stringr, MASS, pracma, lfe,
-        broom, forcats, magrittr, ggplot2, tidyselect (>= 1.0.0)
+        broom, forcats, magrittr, ggplot2, utils, tidyselect (>= 1.0.0)
 Suggests: knitr, rmarkdown, testthat, qpdf
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-04-03 19:44:37 UTC; Isidoro
+Packaged: 2020-05-13 06:07:30 UTC; Isidoro
 Author: Isidoro Garcia-Urquieta [aut, cre]
 Maintainer: Isidoro Garcia-Urquieta <isidoro.gu@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-04-04 00:30:11 UTC
+Date/Publication: 2020-05-13 06:20:10 UTC
