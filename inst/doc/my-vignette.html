@@ -236,14 +236,14 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>$E[Y_i(1) | W=1] - E[Y_i(0) | W=0] $</p>
 <div id="selection-bias-and-random-assignment" class="section level3">
 <h3>Selection Bias and Random Assignment</h3>
-<p>However, this rises the problem of selection bias. People that were treated are not the equal in observables nor unobsersables to the ones treated. This sets the need for <em>Randomized Control Trials</em>. In a RCT, treatment is randomly assigned. This guarantees that:</p>
+<p>However, this rises the problem of selection bias. People that were treated are not the equal in observables nor unobservables to the ones treated. This sets the need for <em>Randomized Control Trials</em>. In a RCT, treatment is randomly assigned. This guarantees that:</p>
 <p><span class="math inline">\(E[Y_i(1) | W=1] = E[Y_i(1) | W=0] = E[Y_i(1)]\)</span> <span class="math inline">\(E[Y_i(0) | W=1] = E[Y_i(0) | W=0] = E[Y_i(0)]\)</span></p>
 <p>This enables an unbiased estimator of <em>ATE</em>:</p>
 <p><span class="math inline">\(E[Y_i(1)-Y_i(0)] = E[Y_i(1)] - E[Y_i(0)] = ATE\)</span></p>
 </div>
 <div id="balance-tests" class="section level3">
 <h3>Balance tests</h3>
-<p>This is posibble because random assignment assures observable baseline characteristics of treatment groups should be similar, statistical unsignificant. This is <em>balance</em> of covariates:</p>
+<p>This is possible because random assignment assures observable baseline characteristics of treatment groups should be similar, statistical unsignificant. This is <em>balance</em> of covariates:</p>
 <p><span class="math inline">\(E[X(1)] = E[X(0)]\)</span></p>
 <p>Where <span class="math inline">\(X_{n,k}\)</span></p>
 <p>Aditionally, if <span class="math inline">\(k\)</span> is sufficiently big. One can end-up in a multiple hypothesis problem, where approximately x% (level of significance) is significant by chance.</p>
@@ -290,7 +290,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="decide-which-variables-to-use-for-strata-building" class="section level3">
 <h3>3. Decide which variables to use for strata building</h3>
-<p>Prior to random assignment, one has to decide which <strong>categorical</strong> variables to build blocks. Hence, the blocks or strata are the group that combine every categorical variable. The cardinality of this groups are all the possible combinations of the chose categorial variables.</p>
+<p>Prior to random assignment, one has to decide which <strong>categorical</strong> variables to build blocks. Hence, the blocks or strata are the group that combine every categorical variable. The cardinality of this groups are all the possible combinations of the chose categorical variables.</p>
 <p>To build categorical variables in a powerful way, function <strong>n_tile_label</strong> divides variables in the decided n groups, putting label of the range of each category to the variable.</p>
 </div>
 <div id="random-assignment" class="section level3">

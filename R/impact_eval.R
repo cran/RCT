@@ -26,7 +26,7 @@
 #' @details This function carries out the evaluation of treatment effects on endogenous variables. 
 #' It automatically runs the regressions of all the endogenous_vars supplied & all the combinations 
 #' of endogenous_vars and heterogenous_vars. Additionally, the function has the option of include 
-#' fixed_effects, contols and cluster variables for clustered std errors.
+#' fixed_effects, controls and cluster variables for clustered std errors.
 
 #' @export
 #' @importFrom magrittr %>%
@@ -99,15 +99,49 @@ impact_eval <- function(data, endogenous_vars, treatment,
 
   formulas_het<-purrr::map_chr(endogenous_vars_final  , ~glue::glue(formula_sin_y))
 
-  ITT_het<-purrr::map2(heterogenous_vars_final, formulas_het,
-                          function(x, y) data %>%
-                            dplyr::group_by(!!rlang::sym(x)) %>% dplyr::do(fit = lfe::felm(stats::as.formula(y),
-                                                                      data = .)) %>% broom::tidy(., fit) )
-
-  base::names(ITT_het)<-stringr::str_c(endogenous_vars_final, heterogenous_vars_final, sep = "_")
-
-  regresiones_final<-c(ITT, ITT_het)
+  if (utils::packageVersion("broom") > "0.5.6") {
+    
+    ITT_het<-purrr::map2(heterogenous_vars_final, formulas_het,
+                            function(x, y) data %>%
+                              dplyr::group_by(!!rlang::sym(x)) %>% 
+                              dplyr::do(fit = lfe::felm(stats::as.formula(y),
+                                                        data = .)) ) %>%
+      purrr::map(., function(x) purrr::map_dfr(x$fit, broom::tidy))
+    
+    ITT_het<-purrr::map2(heterogenous_vars_final, ITT_het, 
+                         function(x,y) { 
+                           
+                           valores_het<-base::unique(dplyr::pull(data, !!rlang::sym(x) ) ) 
+                           
+                           y<-
+                             y %>% 
+                             dplyr::mutate(!!x  := rep(valores_het, each = nrow(y)/length(valores_het) ) ) %>%
+                             dplyr::select(!!x, dplyr::everything())
+                         }
+    )
+    
   
+    base::names(ITT_het)<-stringr::str_c(endogenous_vars_final, heterogenous_vars_final, sep = "_")
+  
+    regresiones_final<-c(ITT, ITT_het)
+    
+    return(regresiones_final)
+  }
+  else {
+    
+    ITT_het<-purrr::map2(heterogenous_vars_final, formulas_het,
+                         function(x, y) data %>%
+                           dplyr::group_by(!!rlang::sym(x)) %>% 
+                           dplyr::do(fit = lfe::felm(stats::as.formula(y),
+                                                     data = .)) %>% broom::tidy(., fit)) 
+    
+    base::names(ITT_het)<-stringr::str_c(endogenous_vars_final, heterogenous_vars_final, sep = "_")
+    
+    regresiones_final<-c(ITT, ITT_het)
+    
+    return(regresiones_final)
+    
+  }
 }
 
 }
