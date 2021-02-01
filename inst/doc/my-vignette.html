@@ -15,6 +15,22 @@
 
 <title>Randomized Control Trials Design, Assignment and Evaluation</title>
 
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 
 
@@ -246,7 +262,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>This is possible because random assignment assures observable baseline characteristics of treatment groups should be similar, statistical unsignificant. This is <em>balance</em> of covariates:</p>
 <p><span class="math inline">\(E[X(1)] = E[X(0)]\)</span></p>
 <p>Where <span class="math inline">\(X_{n,k}\)</span></p>
-<p>Aditionally, if <span class="math inline">\(k\)</span> is sufficiently big. One can end-up in a multiple hypothesis problem, where approximately x% (level of significance) is significant by chance.</p>
+<p>Additionally, if <span class="math inline">\(k\)</span> is sufficiently big. One can end-up in a multiple hypothesis problem, where approximately x% (level of significance) is significant by chance.</p>
 <p>Hence, we can test balance by running the following regression:</p>
 <p>Let</p>
 <p><span class="math display">\[treat_i = {0,1,2,3, ..., n}\]</span></p>
@@ -309,7 +325,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="impact-evaluation" class="section level3">
 <h3>5 Impact evaluation</h3>
-<p>After running a RCT, the social scientist wants to know the ATE for one or several variables and the distribution of this impact within the blocking variables to check for Heterogenous Treatment Effects. Aditionally, if the experiment lasted for more than one period and panel-data is available, one must cluster the standard errors by each i unit and control for period fixed effects. Finally, if by chance one o more covariates are not balance, one would like to control for them.</p>
+<p>After running a RCT, the social scientist wants to know the ATE for one or several variables and the distribution of this impact within the blocking variables to check for Heterogenous Treatment Effects. Additionally, if the experiment lasted for more than one period and panel-data is available, one must cluster the standard errors by each i unit and control for period fixed effects. Finally, if by chance one o more covariates are not balance, one would like to control for them.</p>
 <p>Function <strong>impact_eval</strong> does all this jobs in one single command. It runs all the ATE regressions for each endogenous variable, all the combinations of endogenous variables*heterogenous variables.</p>
 <p>For each combination the model run is:</p>
 <p><span class="math display">\[Y_i = \alpha + \tau treatment + \epsilon \]</span></p>
