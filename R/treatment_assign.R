@@ -202,6 +202,15 @@ treatment_assign <- function(data,
         
     }
     
+    n<-NULL
+    tab_treat<-
+        data %>% 
+        dplyr::group_by(strata, treat) %>% 
+        dplyr::tally() %>% 
+        tidyr::pivot_wider(id_cols = strata, names_from = treat, values_from = n)
+    
+    resumen_strata<-
+        dplyr::left_join(resumen_strata, tab_treat, by = 'strata')
     
     objetos<-list("summary_strata" = resumen_strata, "data" = data %>% dplyr::select(key, strata, treat, missfit))
     
